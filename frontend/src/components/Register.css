@@ -1,0 +1,47 @@
+.register{
+    height:400px;
+    width:400px;
+    display:flex;
+    border:1px solid  white;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background-color:white;
+    border-radius:20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        margin-left:600px;
+
+    /* background-color:red;  */
+}
+p{
+    color:grey
+}
+input{
+    padding:10px 70px 10px 10px;
+    margin-bottom:5px;
+    border-radius:5px;
+   
+    border-radius:grey;
+}
+body{
+ background-color:rgb(229, 231, 235);
+ margin:auto;
+
+}
+button{
+background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));        border-radius:10px;
+        color:white;
+        cursor:pointer;
+        border:none;
+}
+.RegisterPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+.error {
+    color: red;
+    font-size: 14px;
+    margin: 10px 0;
+}

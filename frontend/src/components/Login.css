@@ -1,0 +1,50 @@
+.login{
+    height:400px;
+    width:400px;
+    display:flex;
+    border:1px solid  white;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background-color:white;
+    border-radius:20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        margin-left:600px;
+
+    /* background-color:red;  */
+}
+p{
+    color:grey
+}
+.register-link{
+    text-decoration:none;
+    color:blue;
+}
+input{
+    padding:10px 70px 10px 10px;
+    margin-bottom:5px;
+    border-radius:5px;
+   
+    border-radius:grey;
+}
+body{
+ background-color:rgb(229, 231, 235);
+ margin:auto;
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+}
+button{
+background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));        border-radius:10px;
+        color:white;
+        cursor:pointer;
+        border:none;
+}
+.LoginPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+.error{
+    color:red;
+}
