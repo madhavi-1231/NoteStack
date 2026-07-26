@@ -19,6 +19,9 @@ button{
 h1{
     font-size:35px;
 }
+.hero-title{
+    font-size:55px;
+}
 .main-content{
     display:flex;
 }
@@ -47,6 +50,13 @@ img{
     }
     .hero-title{
         white-space:nowrap;
+        font-size:40px;
+    }
+    .notes-title{
+         width: 450px;        /* or any width you want */
+    text-justify: inter-word;
+    line-height: 1.6;
+    font-size: 20px;
     }
 
 }

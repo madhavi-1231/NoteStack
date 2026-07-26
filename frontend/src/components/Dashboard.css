@@ -217,3 +217,21 @@
 .note-card p {
   margin-bottom: 10px;
 }
+@media(max-width:480px){
+    .search-container{
+        width:150px;
+        height:40px;
+        margin-left:10px;
+        margin-top:2px;
+    }
+    .search-icon{
+        height:20px;
+        margin-top:12px;
+    }
+    .profile{
+        margin-left:90px;
+    }
+    .note-card{
+        margin-left:60px;
+    }
+}

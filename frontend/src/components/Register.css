@@ -45,3 +45,9 @@ background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));        border-radius
     font-size: 14px;
     margin: 10px 0;
 }
+@media (max-width:480px){
+    .register{
+        gap:20px;
+        margin:auto;
+    }
+}

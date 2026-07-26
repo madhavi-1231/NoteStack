@@ -7,7 +7,7 @@ app.use(express.json())
 const mongoose=require('mongoose')
 const User=require("./models/User")
 const Note = require("./models/Note");
-const url="mongodb+srv://madhavimeesala0101_db_user:r6MQkI5euxR4HMcF@cluster0.oo5jhge.mongodb.net/?appName=Cluster0";
+const url="";
 mongoose.connect(url).then(()=>{
     console.log("connected successfully")
 }).catch((error)=>{

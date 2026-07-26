@@ -276,7 +276,7 @@ export default function Dashboard() {
         <h1>Dashboard</h1>
 
         <div className="search-container">
-          <input type="text" placeholder="Search Notes"value={search} onChange={(e)=>setSearch(e.target.value)}/>
+          <input className="search" type="text" placeholder="Search Notes"value={search} onChange={(e)=>setSearch(e.target.value)}/>
           <FiSearch className="search-icon" />
         </div>
 
