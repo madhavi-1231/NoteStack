@@ -112,10 +112,6 @@ npm install
 
 npm run dev
 
----
-
-
-
 ## 📸 Screenshots
 
 ### 🏠 Home Page
@@ -137,8 +133,6 @@ npm run dev
 ### 📱 Responsive View
 
 ![Responsive View](frontend/src/assets/ResponsivePage.png)
-
----
 
 # 👨‍💻 Madhavi Meesala
 
