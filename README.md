@@ -44,26 +44,25 @@ Built with the **MERN Stack (MongoDB, Express.js, React.js, Node.js)** and style
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
-```
+```text
 NoteStack
 │
 ├── backend
-│   ├── config
-│   ├── middleware
 │   ├── models
 │   ├── routes
-│   ├── index.js
-│   └── .env
+│   ├── app.js
+│   └── package.json
 │
 ├── frontend
-│   └── notes-app
-│       ├── src
-│       ├── public
-│       ├── package.json
-│       └── vite.config.js
+│   ├── public
+│   ├── src
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
 │
+├── .gitignore
 └── README.md
 ```
 
@@ -107,62 +106,15 @@ npm start
 ## 3. Frontend Setup
 
 ```bash
-cd frontend/notes-app
+cd frontend/
 
 npm install
 
 npm run dev
-```
 
 ---
 
-# 🌍 Deployment
 
-## Backend (Render)
-
-- Push backend code to GitHub.
-- Create a Web Service on Render.
-- Root Directory: `backend`
-- Build Command:
-
-```bash
-npm install
-```
-
-- Start Command:
-
-```bash
-node index.js
-```
-
-Add Environment Variables:
-
-```
-MONGODB_URI
-JWT_SECRET_KEY
-PORT
-```
-
----
-
-## Frontend (Vercel)
-
-- Import GitHub Repository.
-- Root Directory:
-
-```
-frontend/notes-app
-```
-
-Environment Variable:
-
-```
-VITE_APP_BASE_URL=https://your-backend-url.onrender.com
-```
-
-Deploy.
-
----
 
 # 📸 Screenshots
 
@@ -196,22 +148,12 @@ _Add screenshot here_
 
 ---
 
-# 👨‍💻 Author
+# 👨‍💻 Madhavi Meesala
 
-**Your Name**
-
-- GitHub: https://github.com/yourusername
-- LinkedIn: https://linkedin.com/in/yourprofile
-- Email: your-email@example.com
+- GitHub: https://github.com/madhavi-1231
+- LinkedIn: www.linkedin.com/in/madhavi-meesala-193445413
+- Email: madhavimeesala09@gmail.com
 
 ---
 
-# ⭐ Support
 
-If you like this project, don't forget to **⭐ Star** the repository on GitHub!
-
----
-
-# 📄 License
-
-This project is licensed under the **MIT License**.
