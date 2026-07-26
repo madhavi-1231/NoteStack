@@ -1,4 +1,5 @@
 const express=require('express')
+require("dotenv").config();
 const cors=require('cors')
 const app=express();
 const jwt=require("jsonwebtoken")
@@ -7,7 +8,7 @@ app.use(express.json())
 const mongoose=require('mongoose')
 const User=require("./models/User")
 const Note = require("./models/Note");
-const url="";
+const url = process.env.MONGODB_URL;
 mongoose.connect(url).then(()=>{
     console.log("connected successfully")
 }).catch((error)=>{
