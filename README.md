@@ -120,7 +120,8 @@ npm run dev
 
 ## 🏠 Landing Page
 
-_Add screenshot here_
+![Home Page](frontend/public/homepage.png)
+
 
 ---
 
