@@ -116,36 +116,27 @@ npm run dev
 
 
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-## 🏠 Landing Page
+### 🏠 Home Page
 
-![Home Page](frontend/public/homepage.png)
+![Home Page](frontend/src/assets/homepage.png)
 
+### 🔐 Login Page
 
----
+![Login Page](frontend/src/assets/LoginPage.png)
 
-## 🔐 Login Page
+### 📝 Register Page
 
-_Add screenshot here_
+![Register Page](frontend/src/assets/registerPage.png)
 
----
+### 📋 Dashboard
 
-## 📋 Dashboard
+![Dashboard](frontend/src/assets/DashboardPage.png)
 
-_Add screenshot here_
+### 📱 Responsive View
 
----
-
-## ➕ Add Note
-
-_Add screenshot here_
-
----
-
-## ✏️ Edit Note
-
-_Add screenshot here_
+![Responsive View](frontend/src/assets/ResponsivePage.png)
 
 ---
 
