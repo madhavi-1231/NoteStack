@@ -1,0 +1,438 @@
+# NotesStack MERN Project Notes
+
+## Project Overview
+
+NotesStack is a MERN Stack application that allows users to register, login, and manage personal notes securely using JWT authentication.
+
+### Tech Stack
+
+**Frontend**
+
+* React.js
+* Vite
+* React Router
+* CSS / Tailwind CSS
+
+**Backend**
+
+* Node.js
+* Express.js
+
+**Database**
+
+* MongoDB
+* Mongoose
+
+**Authentication**
+
+* JWT (JSON Web Token)
+
+---
+
+# Frontend Flow
+
+## 1. Create React Project
+
+```bash
+npm create vite@latest
+npm install
+npm run dev
+```
+
+## 2. Components
+
+Create components folder:
+
+```text
+src/
+|
+├── components/
+│   ├── Register.jsx
+│   ├── Login.jsx
+│   ├── Dashboard.jsx
+│   └── NoteCard.jsx
+```
+
+Each page is developed as a separate React component.
+
+---
+
+# Controlled Components
+
+React controls the value of input fields using state.
+
+```jsx
+const [name, setName] = useState("");
+
+<input
+  type="text"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+```
+
+### Explanation
+
+* `name` stores the current value.
+* `setName()` updates the value.
+* `onChange` executes whenever the user types.
+
+This is called a Controlled Component.
+
+---
+
+# Sending Data to Backend
+
+```jsx
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const response = await fetch(
+    "http://localhost:3000/api/auth/register",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password
+      })
+    }
+  );
+
+  const data = await response.json();
+}
+```
+
+### Steps
+
+1. User fills form.
+2. handleSubmit executes.
+3. POST request sent to backend.
+4. Backend processes request.
+5. Response returned to frontend.
+
+---
+
+# Backend Setup
+
+Install packages:
+
+```bash
+npm install express mongoose cors dotenv bcryptjs jsonwebtoken
+npm install nodemon --save-dev
+```
+
+### Package Usage
+
+* Express → API creation
+* Mongoose → MongoDB connection
+* CORS → Frontend-backend communication
+* Dotenv → Environment variables
+* Bcrypt → Password hashing
+* JWT → Authentication
+* Nodemon → Auto restart server
+
+---
+
+# Express Server
+
+```js
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+```
+
+### express.json()
+
+Converts JSON request body into JavaScript object.
+
+Without this:
+
+```js
+req.body
+```
+
+returns undefined.
+
+---
+
+# MongoDB Connection
+
+```js
+mongoose.connect(process.env.MONGO_URL)
+.then(() => {
+  console.log("Connected");
+})
+.catch((err) => {
+  console.log(err);
+});
+```
+
+---
+
+# User Schema
+
+```js
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String
+});
+
+module.exports = mongoose.model("User", userSchema);
+```
+
+### Purpose
+
+Defines structure of User collection.
+
+---
+
+# Register API
+
+```js
+app.post("/api/auth/register", async (req, res) => {
+
+  const { name, email, password } = req.body;
+
+  const user = new User({
+    name,
+    email,
+    password
+  });
+
+  await user.save();
+
+  res.status(201).json({
+    success: true
+  });
+});
+```
+
+### Flow
+
+User → Register Form → API → MongoDB
+
+---
+
+# Login API
+
+```js
+const user = await User.findOne({ email });
+```
+
+### Check User
+
+```js
+if (!user) {
+  return res.status(404).json({
+    message: "User Not Found"
+  });
+}
+```
+
+### Check Password
+
+```js
+if (password !== user.password) {
+  return res.status(401).json({
+    message: "Invalid Password"
+  });
+}
+```
+
+---
+
+# JWT Authentication
+
+## Generate Token
+
+```js
+const payload = {
+  name: user.name,
+  email: user.email
+};
+
+const token = jwt.sign(
+  payload,
+  secretKey,
+  {
+    expiresIn: "1h"
+  }
+);
+```
+
+### Purpose
+
+JWT stores user information securely.
+
+---
+
+# Store Token
+
+Frontend:
+
+```js
+localStorage.setItem(
+  "token",
+  data.token
+);
+```
+
+### Why?
+
+Used for accessing protected routes.
+
+---
+
+# Authentication Middleware
+
+```js
+function authenticated(req, res, next) {
+
+  const authHeader =
+    req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({
+      message: "Token Not Provided"
+    });
+  }
+
+  const token =
+    authHeader.split(" ")[1];
+
+  try {
+
+    const decoded =
+      jwt.verify(token, secretKey);
+
+    req.user = decoded;
+
+    next();
+
+  } catch {
+
+    return res.status(401).json({
+      message: "Invalid Token"
+    });
+  }
+}
+```
+
+### Purpose
+
+Protects private routes.
+
+---
+
+# Notes Schema
+
+```js
+const mongoose = require("mongoose");
+
+const noteSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+  tags: String,
+  userEmail: String
+});
+
+module.exports =
+mongoose.model("Note", noteSchema);
+```
+
+### Purpose
+
+Stores user notes.
+
+---
+
+# Create Note
+
+```js
+app.post(
+  "/api/notes",
+  authenticated,
+  async (req, res) => {
+
+    const note = new Note({
+      title: req.body.title,
+      content: req.body.content,
+      tags: req.body.tags,
+      userEmail: req.user.email
+    });
+
+    await note.save();
+
+    res.json(note);
+});
+```
+
+---
+
+# Fetch Notes
+
+```js
+const notes = await Note.find({
+  userEmail: req.user.email
+});
+```
+
+### Purpose
+
+Shows only logged-in user's notes.
+
+---
+
+# HTTP Status Codes
+
+| Code | Meaning               |
+| ---- | --------------------- |
+| 200  | Success               |
+| 201  | Created               |
+| 400  | Bad Request           |
+| 401  | Unauthorized          |
+| 403  | Forbidden             |
+| 404  | Not Found             |
+| 500  | Internal Server Error |
+
+---
+
+# Complete Project Flow
+
+Register
+→ Save User in MongoDB
+
+Login
+→ Validate Credentials
+
+Generate JWT
+→ Send Token
+
+Store Token
+→ localStorage
+
+Dashboard Request
+→ Send Token
+
+Middleware Verification
+→ JWT Validation
+
+Authorized User
+→ Create Notes
+
+MongoDB
+→ Store Notes
+
+Dashboard
+→ Display Notes
